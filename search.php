@@ -78,39 +78,43 @@ function search($key, $type) {
         $statement->bindValue(1, $searchKey);
         $statement->execute();
         $book = $statement->fetch(PDO::FETCH_OBJ);
+        if ($book) {
+            $book_id = $book->id;
+            $book_title = $book->title;
+            $book_author = $book->author;
+            $book_release_year = $book->release_year;
+            $book_edition_house = $book->edition_house;
+            $book_buy_date = $book->buy_date;
+            $book_price = $book->price;
+            $book_pages = $book->pages;
 
-        $book_id = $book->id;
-        $book_title = $book->title;
-        $book_author = $book->author;
-        $book_release_year = $book->release_year;
-        $book_edition_house = $book->edition_house;
-        $book_buy_date = $book->buy_date;
-        $book_price = $book->price;
-        $book_pages = $book->pages;
+            echo "<table>";
+            echo "<tr>";
+            echo "<th>id</th>";
+            echo "<th>title</th>";
+            echo "<th>author</th>";
+            echo "<th>release year</th>";
+            echo "<th>edition house</th>";
+            echo "<th>buy date</th>";
+            echo "<th>price</th>";
+            echo "<th>pages</th>";
+            echo "</tr>";
 
-        echo "<table>";
-        echo "<tr>";
-        echo "<th>id</th>";
-        echo "<th>title</th>";
-        echo "<th>author</th>";
-        echo "<th>release year</th>";
-        echo "<th>edition house</th>";
-        echo "<th>buy date</th>";
-        echo "<th>price</th>";
-        echo "<th>pages</th>";
-        echo "</tr>";
-
-        echo "<tr>";
-        echo "<td>$book_id</td>";
-        echo "<td>$book_title</td>";
-        echo "<td>$book_author</td>";
-        echo "<td>$book_release_year</td>";
-        echo "<td>$book_edition_house</td>";
-        echo "<td>$book_buy_date</td>";
-        echo "<td>$book_price</td>";
-        echo "<td>$book_pages</td>";
-        echo "</tr>";
-
+            echo "<tr>";
+            echo "<td>$book_id</td>";
+            echo "<td>$book_title</td>";
+            echo "<td>$book_author</td>";
+            echo "<td>$book_release_year</td>";
+            echo "<td>$book_edition_house</td>";
+            echo "<td>$book_buy_date</td>";
+            echo "<td>$book_price</td>";
+            echo "<td>$book_pages</td>";
+            echo "</tr>";
+        
+        }else {
+            echo "no book found";
+        }
+        
 
     
         // echo "$result[1]";
