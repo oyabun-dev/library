@@ -68,6 +68,21 @@ session_start(['user']);?>
             <input type="text" name="key" id="search">
             <button type="submit">search</button>
         </form>
+
+        <h1>Search Lended Books</h1>
+        <!-- search lended books -->
+        <form action="search_lended_books.php" method="post">
+            <select name="type" id="type">
+                <option value="book">book</option>
+                <option value="release_year">release year</option>
+                <option value="price">price</option>
+                <option value="pages">pages</option>
+                <option value="edition_house">edition house</option>
+                <option value="author">author</option>
+            </select>
+            <label for="search">search</label>
+            <input type="text" name="key" id="search">
+            <button type="submit">search</button>
     </header>
 
 <?php require_once "footer.php"; ?>
