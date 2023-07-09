@@ -21,7 +21,7 @@ function search($key, $type) {
 
         case 'release_year':
             $key = date('Y-m-d', strtotime($key));
-            $query = ("SELECT * FROM books WHERE release_year LIKE ?");
+            $query = ("SELECT * FROM books WHERE release_year = ?");
             $msg = "book released in : $key found";
             $result = [$query, $msg, $key];
             // return $result;
@@ -29,7 +29,7 @@ function search($key, $type) {
         
         case 'price':
             $key = (float)$key;
-            $query = ("SELECT * FROM books WHERE price LIKE ?");
+            $query = ("SELECT * FROM books WHERE price = ?");
             $msg = "book bought for : $key found";
             $result = [$query, $msg, $key];
             // return $result;
@@ -37,7 +37,7 @@ function search($key, $type) {
 
         case 'pages':
             $key = (int)$key;
-            $query = ("SELECT * FROM books WHERE pages LIKE ?");
+            $query = ("SELECT * FROM books WHERE pages = ?");
             $msg = "book with : $key pages found";
             $result = [$query, $msg, $key];
             // return $result;
