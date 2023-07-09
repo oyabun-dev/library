@@ -74,7 +74,11 @@ function search($key, $type) {
         global $conn;
         // Requête d'insertion
         $statement = $conn->prepare($result[0]);
-        $searchKey = "%" . $result[2] . "%";
+        if (is_int($result[2]) || is_float($result[2])) {
+            $searchKey = $result[2];
+        }else {
+            $searchKey = "%" . $result[2] . "%";
+        }
         $statement->bindValue(1, $searchKey);
         $statement->execute();
         $book = $statement->fetch(PDO::FETCH_OBJ);
