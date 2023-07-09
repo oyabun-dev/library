@@ -81,18 +81,12 @@ function search($key, $type) {
         }
         $statement->bindValue(1, $searchKey);
         $statement->execute();
-        $book = $statement->fetch(PDO::FETCH_OBJ);
+        $book = $statement->fetch(PDO::FETCH_ASSOC);
+    
         if ($book) {
-            $book_id = $book->id;
-            $book_title = $book->title;
-            $book_author = $book->author;
-            $book_release_year = $book->release_year;
-            $book_edition_house = $book->edition_house;
-            $book_buy_date = $book->buy_date;
-            $book_price = $book->price;
-            $book_pages = $book->pages;
-
+            echo "<h2>$result[1]</h2>";
             echo "<table>";
+            echo "<thead>";
             echo "<tr>";
             echo "<th>id</th>";
             echo "<th>title</th>";
@@ -103,22 +97,23 @@ function search($key, $type) {
             echo "<th>price</th>";
             echo "<th>pages</th>";
             echo "</tr>";
-
+            echo "</thead>";
+            echo "<tbody>";
             echo "<tr>";
-            echo "<td>$book_id</td>";
-            echo "<td>$book_title</td>";
-            echo "<td>$book_author</td>";
-            echo "<td>$book_release_year</td>";
-            echo "<td>$book_edition_house</td>";
-            echo "<td>$book_buy_date</td>";
-            echo "<td>$book_price</td>";
-            echo "<td>$book_pages</td>";
+            echo "<td>" . $book['id'] . "</td>";
+            echo "<td>" . $book['title'] . "</td>";
+            echo "<td>" . $book['author'] . "</td>";
+            echo "<td>" . $book['release_year'] . "</td>";
+            echo "<td>" . $book['edition_house'] . "</td>";
+            echo "<td>" . $book['buy_date'] . "</td>";
+            echo "<td>" . $book['price'] . "</td>";
+            echo "<td>" . $book['pages'] . "</td>";
             echo "</tr>";
-        
+            echo "</tbody>";
+            echo "</table>";
         }else {
-            echo "no book found";
+            echo "<h2>no book found</h2>";
         }
-        
 
     
         // echo "$result[1]";
