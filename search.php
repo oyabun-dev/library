@@ -74,7 +74,7 @@ function search($key, $type) {
         global $conn;
         // Requête d'insertion
         $statement = $conn->prepare($result[0]);
-        if (is_int($result[2]) || is_float($result[2])) {
+        if (is_int($result[2]) || is_float($result[2]) || $result[2] == date('Y-m-d', strtotime($result[2]))) {
             $searchKey = $result[2];
         }else {
             $searchKey = "%" . $result[2] . "%";
