@@ -83,6 +83,32 @@ session_start(['user']);?>
             <label for="search">search</label>
             <input type="text" name="key" id="search">
             <button type="submit">search</button>
+        </form>
+
+        <? require_once 'search.php';
+            
+        ?>
+        <h1>Update Books</h1>
+        <!-- update books -->
+        <form action="update_books.php" method="post">
+            <label for="book-id">book id</label>
+            <input type="number" name="id" id="book-id" value="<? $book['id'] ?>">
+            <label for="book-title">title</label>
+            <input type="text" name="title" id="book-title">
+            <label for="book-author">author</label>
+            <input type="text" name="author" id="book-author">
+            <label for="book-release-year">release year</label>
+            <input type="date" name="release_year" id="book-release-year">
+            <label for="book-edition-house">edition house</label>
+            <input type="text" name="edition_house" id="book-edition-house">
+            <label for="book-buy-date">buy date</label>
+            <input type="date" name="buy_date" id="book-buy-date">
+            <label for="book-price">price</label>
+            <input type="number" name="price" id="book-price">
+            <label for="book-pages">pages</label>
+            <input type="number" name="pages" id="book-pages">
+            <button type="submit">update book</button>
+        </form>
     </header>
 
 <?php require_once "footer.php"; ?>

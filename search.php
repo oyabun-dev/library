@@ -12,7 +12,6 @@ function search($key, $type) {
     $result = [];
     switch ($type) {
         case 'book':
-            $key = trim($key);
             $query = ("SELECT * FROM books WHERE title LIKE ?");
             $msg = "book : $key found";
             $result = [$query, $msg, $key];
@@ -44,7 +43,6 @@ function search($key, $type) {
         break;
 
         case 'edition_house':
-            $key = trim($key);
             $query = ("SELECT * FROM books WHERE edition_house LIKE ?");
             $msg = "book from : $key found";
             $result = [$query, $msg, $key];
@@ -52,7 +50,6 @@ function search($key, $type) {
         break;
 
         case 'author':
-            $key = trim($key);
             $query = ("SELECT * FROM books WHERE author LIKE ?");
             $msg = "book written by : $key found";
             $result = [$query, $msg, $key];
@@ -60,7 +57,6 @@ function search($key, $type) {
         break;
             
         default:
-            $key = trim($key);
             $query = ("SELECT * FROM books WHERE title LIKE ?");
             $msg = "book : $key found";
             $result = [$query, $msg, $key];
@@ -82,42 +78,46 @@ function search($key, $type) {
         $statement->bindValue(1, $searchKey);
         $statement->execute();
         $book = $statement->fetch(PDO::FETCH_ASSOC);
-    
-        if ($book) {
-            echo "<h2>$result[1]</h2>";
-            echo "<table>";
-            echo "<thead>";
-            echo "<tr>";
-            echo "<th>id</th>";
-            echo "<th>title</th>";
-            echo "<th>author</th>";
-            echo "<th>release year</th>";
-            echo "<th>edition house</th>";
-            echo "<th>buy date</th>";
-            echo "<th>price</th>";
-            echo "<th>pages</th>";
-            echo "</tr>";
-            echo "</thead>";
-            echo "<tbody>";
-            echo "<tr>";
-            echo "<td>" . $book['id'] . "</td>";
-            echo "<td>" . $book['title'] . "</td>";
-            echo "<td>" . $book['author'] . "</td>";
-            echo "<td>" . $book['release_year'] . "</td>";
-            echo "<td>" . $book['edition_house'] . "</td>";
-            echo "<td>" . $book['buy_date'] . "</td>";
-            echo "<td>" . $book['price'] . "</td>";
-            echo "<td>" . $book['pages'] . "</td>";
-            echo "</tr>";
-            echo "</tbody>";
-            echo "</table>";
-        }else {
-            echo "<h2>no book found</h2>";
-        }
-
-    
+        showResults($result[1], $book, $statement);
         // echo "$result[1]";
     } catch (PDOException $e) {
         die("Erreur : " . $e->getMessage());
     }
 }
+
+function showResults($title, $result, $statement) {
+    echo "<h1>$title</h1>";
+    echo "<table>";
+    echo "<thead>";
+    echo "<tr>";
+    echo "<th>id</th>";
+    echo "<th>title</th>";
+    echo "<th>author</th>";
+    echo "<th>release year</th>";
+    echo "<th>edition house</th>";
+    echo "<th>buy date</th>";
+    echo "<th>price</th>";
+    echo "<th>pages</th>";
+    echo "</tr>";
+    echo "</thead>";
+    echo "<tbody>";
+
+    while($result) {
+        echo "<tr>";
+        echo "<td>$result[id]</td>";
+        echo "<td>$result[title]</td>";
+        echo "<td>$result[author]</td>";
+        echo "<td>$result[release_year]</td>";
+        echo "<td>$result[edition_house]</td>";
+        echo "<td>$result[buy_date]</td>";
+        echo "<td>$result[price]</td>";
+        echo "<td>$result[pages]</td>";
+        echo "<td><a href='update_books.php?id=$result[id]'>update</a></td>";
+        echo "<td><a href='delete_books.php?id=$result[id]'>delete</a></td>";
+        echo "</tr>";
+        $result = $statement->fetch(PDO::FETCH_ASSOC);
+    }
+    echo "</tbody>";
+    echo "</table>";
+}
+
