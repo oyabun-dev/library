@@ -1,7 +1,4 @@
 
 <footer>
-    <h1>I'm the footer</h1>
+    &copy; 2023 - All rights reserved - <a href="https://www.github.com/oyabun-dev">&nbsp;Khalifa Ababacar BEYE</a>- <a href="https://www.github.com/umarng">&nbsp;Oumar Ngalla NDIOUR</a>
 </footer>
-<script src="app.js"></script>
-</body>
-</html>

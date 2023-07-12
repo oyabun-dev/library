@@ -11,7 +11,6 @@
         $result = [];
         switch ($type) {
             case 'book':
-                $key = trim($key);
                 $query = ("SELECT * FROM books WHERE title LIKE ?");
                 $msg = "book : $key found";
                 $result = [$query, $msg, $key];
@@ -43,7 +42,6 @@
             break;
     
             case 'edition_house':
-                $key = trim($key);
                 $query = ("SELECT * FROM books WHERE edition_house LIKE ?");
                 $msg = "book from : $key found";
                 $result = [$query, $msg, $key];
@@ -51,7 +49,6 @@
             break;
     
             case 'author':
-                $key = trim($key);
                 $query = ("SELECT * FROM books WHERE author LIKE ?");
                 $msg = "book written by : $key found";
                 $result = [$query, $msg, $key];
@@ -59,7 +56,6 @@
             break;
                 
             default:
-                $key = trim($key);
                 $query = ("SELECT * FROM books WHERE title LIKE ?");
                 $msg = "book : $key found";
                 $result = [$query, $msg, $key];

@@ -12,7 +12,7 @@ function delete_book($id) {
     $query = ("DELETE FROM books WHERE id = $id");
     $statement = $conn->prepare($query);
     $statement->execute();
-    header('Location: index.php');
+    header('Location: bookshelf.php');
 }
 
 delete_book($id);
