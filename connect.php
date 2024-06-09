@@ -2,7 +2,7 @@
 $host = 'localhost';
 $dbname = 'library';
 $username = 'root';
-$password = '';
+$password = 'root';
 
 function _connect($host, $dbname, $username, $password) {
     try {
